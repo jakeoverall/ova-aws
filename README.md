@@ -11,18 +11,21 @@ From VirtualBox to AWS
 
 3. [Create a new S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) in the same AWS Region where you plan to run your EC2 instance
  
-4. Run the following bash command 
+4. Run the following bash command
   - > `aws iam create-role --role-name vmimport --assume-role-policy-document ./trust-policy.json`
        
-5. Update `role-policy.json` with your bucketname
+5. Update `role-policy.json` with your bucketname then run the following command
+  - > `aws iam put-role-policy --role-name vmimport --policy-name vmimport --policy-document ./role-policy.json`
 
 6. [Upload the image to the S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) with the tool of your choice.
 
-7. From the client machine, run the AWS CLI command [import-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/import-image.html).
+7. Edit `containers.json` to include your S3 bucket and key
 
-8. To check the import task status, run the AWS CLI command [describe-import-image-tasks](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-import-image-tasks.html).
+8. From the client machine, run the AWS CLI command [import-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/import-image.html).
 
-9. After the image is imported as an AMI, follow the instructions for [Launching an Instance using the Launch Instance Wizard](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/launching-instance.html#launch-instance-console).
+9. To check the import task status, run the AWS CLI command [describe-import-image-tasks](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-import-image-tasks.html).
+
+10. After the image is imported as an AMI, follow the instructions for [Launching an Instance using the Launch Instance Wizard](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/launching-instance.html#launch-instance-console).
 
 * * *
 
