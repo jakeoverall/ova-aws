@@ -1,0 +1,10 @@
+[
+  {
+    "Description": "Image Description",
+    "Format": "ova | vhdx | vdi ",
+    "UserBucket": {
+      "S3Bucket": "BUCKETNAME",
+      "S3Key": "VMS/Server XXX.FORMAT"
+    }
+  }
+]
