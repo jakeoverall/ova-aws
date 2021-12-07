@@ -12,15 +12,15 @@ From VirtualBox to AWS
 3. [Create a new S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) in the same AWS Region where you plan to run your EC2 instance
  
 4. Run the following bash command
-  - > `aws iam create-role --role-name vmimport --assume-role-policy-document ./trust-policy.json`
+  - > `aws iam create-role --role-name vmimport --assume-role-policy-document "file://./trust-policy.json"`
        
 5. Update `role-policy.json` with your bucketname then run the following command
-  - > `aws iam put-role-policy --role-name vmimport --policy-name vmimport --policy-document ./role-policy.json`
+  - > `aws iam put-role-policy --role-name vmimport --policy-name vmimport --policy-document "file://./role-policy.json"`
 
 6. [Upload the image to the S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) with the tool of your choice.
 
 7. Edit `containers.json` to include your S3 bucket and key then run the following command
- - > `aws ec2 import-image --description "DESCRIPTION_HERE" --license-type byol --disk-containers ./containers.json` 
+ - > `aws ec2 import-image --description "DESCRIPTION_HERE" --license-type byol --disk-containers "file://./containers.json"` 
 
 8. From the client machine, run the AWS CLI command [import-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/import-image.html).
  
