@@ -19,11 +19,13 @@ From VirtualBox to AWS
 
 6. [Upload the image to the S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) with the tool of your choice.
 
-7. Edit `containers.json` to include your S3 bucket and key
+7. Edit `containers.json` to include your S3 bucket and key then run the following command
+ - > `aws ec2 import-image --description "DESCRIPTION_HERE" --license-type byol --disk-containers ./containers.json` 
 
 8. From the client machine, run the AWS CLI command [import-image](https://docs.aws.amazon.com/cli/latest/reference/ec2/import-image.html).
-
+ 
 9. To check the import task status, run the AWS CLI command [describe-import-image-tasks](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-import-image-tasks.html).
+ - > `aws ec2 describe-import-image-tasks --import-task-ids import-ami-TASK_ID` 
 
 10. After the image is imported as an AMI, follow the instructions for [Launching an Instance using the Launch Instance Wizard](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/launching-instance.html#launch-instance-console).
 
